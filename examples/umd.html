@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-16" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Charts for children</title>
+  <link rel="stylesheet" href="./node_modules/create_input_table/dist/assets/create_input_table.min.css">
+</head>
+
+<body id="body">
+  <div class="chartMenu">
+    <p>JS-lib for children data literacy</p>
+  </div>
+
+  <div id="table"> </div>
+  <div id="tableButtons"></div>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="module" src="./node_modules/create_input_table/dist/assets/create_input_table.umd.min.js"></script>
+  <script>
+
+create_input_table('table', 'tableButtons', 1)
+  </script>
+   
+</body>
+
+</html>
