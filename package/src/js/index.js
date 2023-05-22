@@ -1,5 +1,5 @@
 import '../styles/main.scss';
-import Chart from 'https://cdn.jsdelivr.net/npm/chart.js';
+//import Chart from 'https://cdn.jsdelivr.net/npm/chart.js';
 
 //console.log(Chart);
 // import {Chart, registerables} from 'chart.js/dist/chart.js';
