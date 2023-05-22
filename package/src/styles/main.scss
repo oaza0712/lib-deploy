@@ -352,6 +352,13 @@ div.container2 {
   background-color: #D9F6FF;
 
 }
+div.container3 {
+  height: 40px;
+  padding: 10px;
+  background-color: #D9F6FF;
+
+
+}
 
 .inputCard1 {
   width: 100%;
@@ -430,5 +437,45 @@ div.container2 {
   left: 2.5px;
   right: 2.5px;
   transform: rotate(45deg);
+}
+
+.addDataButton {
+  border-radius: 50%;
+  padding: 0.5em;
+  width: 5px;
+  height: 5px;
+  border: 2px solid rgb(86, 160, 209);
+  color: rgb(86, 160, 209);
+  position: relative;
+}
+
+.addDataButton:hover {
+  border: 2px solid rgb(86, 160, 209);
+  background-color: #eee;
+  color: #ffffff;
+}
+
+.addDataButton::before {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: rgb(86, 160, 209);
+  width: 1px;
+  left: 6px;
+  top: 2.5px;
+  bottom: 2.5px;
+  transform: rotate(90deg);
+}
+
+.addDataButton::after {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: rgb(86, 160, 209);
+  height: 1px;
+  top: 6px;
+  left: 2.5px;
+  right: 2.5px;
+  transform: rotate(90deg);
 }
 /*# sourceMappingURL=styles.css.map */

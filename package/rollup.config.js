@@ -2,6 +2,8 @@
 import { terser } from "rollup-plugin-terser";
 import scss from 'rollup-plugin-scss'
 import pkg from './package.json';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+
 
 export default {
     input: 'src/js/index.js',
@@ -9,8 +11,9 @@ export default {
         terser(),
         scss({
             output: 'dist/@oasis07/data.min.css',
-            outputStyle: "compressed"
+            fileName: 'bundle.css'
         }),
+        nodeResolve()
     ],
     output: [
         {
@@ -22,5 +25,5 @@ export default {
             file: pkg.module,
             format: 'es' 
         },         
-    ],
+    ]
 };

@@ -1,5 +1,15 @@
 import '../styles/main.scss';
+import Chart from 'https://cdn.jsdelivr.net/npm/chart.js';
+
+//console.log(Chart);
+// import {Chart, registerables} from 'chart.js/dist/chart.js';
+// Chart.register(...registerables);
+
 let tableCreated = false;
+create_input_table('table', 'tableButtons', 1);
+collectButton();
+
+
 //ADDING BUTTONS TO PAGE
  export function create_input_table(tableId, buttonId, dataCardsId) {
   let tableElement = document.getElementById(tableId);
@@ -34,10 +44,7 @@ let tableCreated = false;
   return true;
 
 }
-create_input_table('table', 'tableButtons', 1);
-collectButton();
-console.log("up")
-tableCreated=true;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //ADDING CARDS TO TABLE
@@ -193,6 +200,13 @@ function addCard(tableId, dataCardsId) {
   inputCard3.className = "inputCard3"
   inputCard3.setAttribute("placeHolder", "Input number");
   container2.appendChild(inputCard3);
+ 
+  let container3 = document.createElement('div');
+  container3.className = "container2"
+  let button = document.createElement('button');
+  button.className = "addDataButton ";
+  container3.appendChild(button);
+
   //ADDING DELETE CARD BUTOTN
   let deleteButton = document.createElement('button');
   deleteButton.className = "deleteButton";
@@ -205,7 +219,47 @@ function addCard(tableId, dataCardsId) {
   card.appendChild(header);
   card.appendChild(container);
   card.appendChild(container2);
+  card.appendChild(container3);
   
+  button.addEventListener('click', e => {
+    container3.remove(button);
+    
+    let container = document.createElement('div');
+    container.className = "container";
+    let inputCard2 = document.createElement('input');
+    inputCard2.className = "inputCard2"
+    inputCard2.setAttribute("placeHolder", "Input name");
+    container.appendChild(inputCard2);
+    let container2 = document.createElement('div');
+    container2.className = "container2";
+    let inputCard3 = document.createElement('input');
+    inputCard3.className = "inputCard3"
+    inputCard3.setAttribute("placeHolder", "Input number");
+    container2.appendChild(inputCard3);
+   
+    let container3 = document.createElement('div');
+    container3.className = "container2"
+    let button = document.createElement('button');
+    button.className = "addDataButton ";
+    container2.appendChild(button);
+    
+    card.appendChild(container);
+    card.appendChild(container2);
+    card.appendChild(container3);
+   })
+
+  function addNewField(){
+    
+ 
+  }
+  let newDataButton = document.getElementsByClassName("addDataButton")
+  for(let i = 0; i < newDataButton.length; i++){
+    newDataButton[i].addEventListener('click', e => {
+      addNewField();
+    
+   });
+  }
+
   deleteButton.addEventListener('click', e => {
     card.remove();
   })
@@ -224,12 +278,14 @@ function addCard(tableId, dataCardsId) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///COLLECTING DATA
 function getData() {
+  console.log("unutar getData");
   let table = document.getElementById('dataCards');
   let unicode = table.getElementsByClassName('emoji-input');
   let unicodeArray = [];
   for (let i = 0; i < unicode.length; i++) {
     if (unicode[i].textContent.trim != "") {
       unicodeArray[i] = unicode[i].textContent
+      //console.log("unicodeArray" + unicodeArray[i]);
     }
   }
   let name = table.getElementsByClassName('inputCard2');
@@ -237,6 +293,8 @@ function getData() {
   for (let i = 0; i < name.length; i++) {
     if (name[i].value.length != 0) {
       nameArray[i] = name[i].value
+      //console.log("unicodeArray" + unicodeArray[i]);
+
     }
   }
   let number = table.getElementsByClassName('inputCard3');
@@ -246,6 +304,7 @@ function getData() {
       numberArray[i] = number[i].value
     }
   }
+
   return {
     labels: nameArray,
     values: numberArray,
@@ -276,11 +335,13 @@ function createGraphCard(canvasId) {
 }
 if(tableCreated){
 }
- export function collectButton() {
+  export function collectButton() {
   console.log("In")
   const button = document.getElementById("get");
   button.addEventListener('click', (event) => {
-    temp = getData();
+    let temp = getData();
+    console.log(temp);
+
     let Bar2 = {
       type: "bar",
       labels: temp.labels,
@@ -288,7 +349,8 @@ if(tableCreated){
       unicode: temp.unicode,
     };
     createGraphCard('barPictogram')
-    const barPictogramReturn = KidChart(barPictogram, Bar2, 'barPictogram');
+    let barPictogramReturn = KidChart(barPictogram, Bar2, 'barPictogram');
+    console.log(barPictogramReturn);
     //createGraphCard('barTransition')
     //KidChart(barTransition, Bar2, 'barTransition');
     //createGraphCard('barChart')
@@ -577,10 +639,14 @@ function KidChart(typeOfChart, userData, canvasId) {
     plugins: [plugin],
   };
   // render init block
+  console.log("canvas "+document.getElementById(canvasId));
+ console.log("config " + config);
   const myKidChart = new Chart(
     document.getElementById(canvasId),
     config
   );
+  console.log("config2 ");
+
   return myKidChart;
 }
 
